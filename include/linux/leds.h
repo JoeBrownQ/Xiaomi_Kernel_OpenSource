@@ -37,6 +37,10 @@ struct led_classdev {
 	const char		*name;
 	enum led_brightness	 brightness;
 	enum led_brightness	 max_brightness;
+<<<<<<< HEAD
+=======
+	enum led_brightness	 usr_brightness_req;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	int			 flags;
 
 	/* Lower 16 bits reflect status */

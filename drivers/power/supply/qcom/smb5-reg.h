@@ -1,6 +1,10 @@
 /* SPDX-License-Identifier: GPL-2.0 */
 /*
  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #ifndef __SMB5_CHARGER_REG_H
@@ -275,6 +279,13 @@ enum {
 	HVDCP_PULSE_COUNT_MAX_QC2_INVALID = 0xC0
 };
 
+<<<<<<< HEAD
+=======
+#define PULSE_COUNT_QC2P0_12V			BIT(7)
+#define PULSE_COUNT_QC2P0_9V			BIT(6)
+#define PULSE_COUNT_QC3P0_mask			GENMASK(5, 0)
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 #define USBIN_OPTIONS_1_CFG_REG			(USBIN_BASE + 0x62)
 #define HVDCP_AUTH_ALG_EN_CFG_BIT		BIT(6)
 #define HVDCP_AUTONOMOUS_MODE_EN_CFG_BIT	BIT(5)
@@ -344,6 +355,12 @@ enum {
 #define SNK_RP_3P0_BIT				BIT(1)
 #define SNK_RP_SHORT_BIT			BIT(0)
 
+<<<<<<< HEAD
+=======
+#define TYPE_C_SNK_DEBUG_ACC_STATUS_REG			(TYPEC_BASE + 0x07)
+#define SNK_DEBUG_ACC_RPSTD_PRSTD_BIT			BIT(0)
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 #define TYPE_C_SRC_STATUS_REG			(TYPEC_BASE + 0x08)
 #define DETECTED_SNK_TYPE_MASK			GENMASK(4, 0)
 #define SRC_HIGH_BATT_BIT			BIT(5)
@@ -376,6 +393,13 @@ enum {
 #define U_USB_FMB2_BIT				BIT(1)
 #define U_USB_FLOAT2_BIT			BIT(0)
 
+<<<<<<< HEAD
+=======
+#define TYPE_C_DEBUG_ACC_SNK_CFG		(TYPEC_BASE + 0x4A)
+#define TYPEC_DEBUG_ACC_SNK_SEL_ICL		BIT(2)
+#define TYPEC_DEBUG_ACC_SNK_DIS_AICL		BIT(3)
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 #define TYPE_C_MODE_CFG_REG			(TYPEC_BASE + 0x44)
 #define TYPEC_TRY_MODE_MASK			GENMASK(4, 3)
 #define EN_TRY_SNK_BIT				BIT(4)

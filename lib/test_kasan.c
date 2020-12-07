@@ -1,6 +1,10 @@
 /*
  *
  * Copyright (c) 2014 Samsung Electronics Co., Ltd.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  * Author: Andrey Ryabinin <a.ryabinin@samsung.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -480,6 +484,7 @@ static noinline void __init copy_user_test(void)
 	kfree(kmem);
 }
 
+<<<<<<< HEAD
 static noinline void __init use_after_scope_test(void)
 {
 	volatile char *volatile p;
@@ -502,6 +507,8 @@ static noinline void __init use_after_scope_test(void)
 	p[0] = 1;
 	p[1023] = 1;
 }
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 static noinline void __init kasan_alloca_oob_left(void)
 {
@@ -615,7 +622,10 @@ static int __init kmalloc_tests_init(void)
 	kasan_alloca_oob_right();
 	ksize_unpoisons_memory();
 	copy_user_test();
+<<<<<<< HEAD
 	use_after_scope_test();
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	kmem_cache_double_free();
 	kmem_cache_invalid_free();
 

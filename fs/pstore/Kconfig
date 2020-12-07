@@ -153,3 +153,14 @@ config PSTORE_RAM
 	  "ramoops.ko".
 
 	  For more information, see Documentation/admin-guide/ramoops.rst.
+<<<<<<< HEAD
+=======
+
+config PSTORE_LAST_KMSG
+	bool "export /proc/last_kmsg"
+	default n
+	depends on PSTORE
+	help
+	  when the option is enabled, pstore will export a proc filesystem
+	  interface /proc/last_kmsg.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)

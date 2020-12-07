@@ -75,3 +75,8 @@ obj-$(CONFIG_WIGIG_SENSING_SPI)	+= wigig_sensing.o
 obj-$(CONFIG_QTI_MAXIM_FAN_CONTROLLER) += max31760.o
 obj-$(CONFIG_QTI_XR_SMRTVWR_MISC) += qxr-stdalonevwr.o
 obj-$(CONFIG_FPR_FPC)		+= fpr_FingerprintCard/
+<<<<<<< HEAD
+=======
+
+obj-$(CONFIG_GPIO_TESTING_MODE)	+= gpio-testing-mode.o
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)

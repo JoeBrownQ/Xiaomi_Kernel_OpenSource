@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2013-2015,2017,2019, The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #define pr_fmt(fmt) "cpu-boost: " fmt
@@ -256,6 +260,27 @@ static void cpuboost_input_event(struct input_handle *handle,
 	last_input_time = ktime_to_us(ktime_get());
 }
 
+<<<<<<< HEAD
+=======
+void touch_irq_boost(void)
+{
+	u64 now;
+	if (!input_boost_enabled)
+		return;
+
+	now = ktime_to_us(ktime_get());
+	if (now - last_input_time < MIN_INPUT_INTERVAL)
+		return;
+
+	if (work_pending(&input_boost_work))
+		return;
+
+	queue_work(cpu_boost_wq, &input_boost_work);
+	last_input_time = ktime_to_us(ktime_get());
+}
+EXPORT_SYMBOL(touch_irq_boost);
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 static int cpuboost_input_connect(struct input_handler *handler,
 		struct input_dev *dev, const struct input_device_id *id)
 {

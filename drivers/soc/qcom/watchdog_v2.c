@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2012-2020, The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #include <linux/module.h>
@@ -28,6 +32,10 @@
 #include <linux/sched/clock.h>
 #include <linux/cpumask.h>
 #include <uapi/linux/sched/types.h>
+<<<<<<< HEAD
+=======
+#include <linux/sched/debug.h>
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 #define MODULE_NAME "msm_watchdog"
 #define WDT0_ACCSCSSNBARK_INT 0
@@ -128,6 +136,24 @@ module_param(WDT_HZ, long, 0000);
 static int ipi_en = IPI_CORES_IN_LPM;
 module_param(ipi_en, int, 0444);
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_FIRE_WATCHDOG
+static int wdog_fire;
+static int wdog_fire_set(const char *val, const struct kernel_param *kp);
+module_param_call(wdog_fire, wdog_fire_set, param_get_int,
+				&wdog_fire, 0644);
+
+static int wdog_fire_set(const char *val, const struct kernel_param *kp)
+{
+	printk(KERN_INFO "trigger wdog_fire_set\n");
+	local_irq_disable();
+	while (1);
+	return 0;
+}
+#endif
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 static void dump_cpu_alive_mask(struct msm_watchdog_data *wdog_dd)
 {
 	static char alive_mask_buf[MASK_SIZE];
@@ -535,6 +561,10 @@ static irqreturn_t wdog_bark_handler(int irq, void *dev_id)
 	nanosec_rem = do_div(wdog_dd->last_pet, 1000000000);
 	dev_info(wdog_dd->dev, "Watchdog last pet at %lu.%06lu\n",
 			(unsigned long) wdog_dd->last_pet, nanosec_rem / 1000);
+<<<<<<< HEAD
+=======
+	show_state_filter(TASK_UNINTERRUPTIBLE);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	if (wdog_dd->do_ipi_ping)
 		dump_cpu_alive_mask(wdog_dd);
 
@@ -611,7 +641,11 @@ static void init_watchdog_data(struct msm_watchdog_data *wdog_dd)
 	wdog_dd->min_slack_ns = ULLONG_MAX;
 	timeout = (wdog_dd->bark_time * WDT_HZ)/1000;
 	__raw_writel(timeout, wdog_dd->base + WDT0_BARK_TIME);
+<<<<<<< HEAD
 	__raw_writel(timeout + 3*WDT_HZ, wdog_dd->base + WDT0_BITE_TIME);
+=======
+	__raw_writel(timeout + 10*WDT_HZ, wdog_dd->base + WDT0_BITE_TIME);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 	wdog_dd->panic_blk.notifier_call = panic_wdog_handler;
 	atomic_notifier_chain_register(&panic_notifier_list,

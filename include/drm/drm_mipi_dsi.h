@@ -2,6 +2,10 @@
  * MIPI DSI Bus
  *
  * Copyright (C) 2012-2013, Samsung Electronics, Co., Ltd.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  * Andrzej Hajda <a.hajda@samsung.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -284,6 +288,11 @@ int mipi_dsi_dcs_set_pixel_format(struct mipi_dsi_device *dsi, u8 format);
 int mipi_dsi_dcs_set_tear_scanline(struct mipi_dsi_device *dsi, u16 scanline);
 int mipi_dsi_dcs_set_display_brightness(struct mipi_dsi_device *dsi,
 					u16 brightness);
+<<<<<<< HEAD
+=======
+int mipi_dsi_dcs_set_display_brightness_big_endian(struct mipi_dsi_device *dsi,
+					u16 brightness);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 int mipi_dsi_dcs_get_display_brightness(struct mipi_dsi_device *dsi,
 					u16 *brightness);
 

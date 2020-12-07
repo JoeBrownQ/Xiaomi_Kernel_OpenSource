@@ -1,4 +1,8 @@
 /* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -186,5 +190,9 @@ int spmi_command_reset(struct spmi_device *sdev);
 int spmi_command_sleep(struct spmi_device *sdev);
 int spmi_command_wakeup(struct spmi_device *sdev);
 int spmi_command_shutdown(struct spmi_device *sdev);
+<<<<<<< HEAD
+=======
+int pmic_gpio_get_external(const char* chip_name, unsigned pin);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 #endif

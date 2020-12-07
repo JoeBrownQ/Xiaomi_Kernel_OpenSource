@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 
@@ -21,7 +25,11 @@
 #include <linux/pinctrl/consumer.h>
 
 #define SPI_NUM_CHIPSELECT	(4)
+<<<<<<< HEAD
 #define SPI_XFER_TIMEOUT_MS	(250)
+=======
+#define SPI_XFER_TIMEOUT_MS	(1500)
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 #define SPI_AUTO_SUSPEND_DELAY	(250)
 /* SPI SE specific registers */
 #define SE_SPI_CPHA		(0x224)

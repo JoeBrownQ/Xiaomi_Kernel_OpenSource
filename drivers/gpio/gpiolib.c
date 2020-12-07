@@ -1624,7 +1624,11 @@ static int gpiochip_match_name(struct gpio_chip *chip, void *data)
 	return !strcmp(chip->label, name);
 }
 
+<<<<<<< HEAD
 static struct gpio_chip *find_chip_by_name(const char *name)
+=======
+struct gpio_chip *find_chip_by_name(const char *name)
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 {
 	return gpiochip_find((void *)name, gpiochip_match_name);
 }

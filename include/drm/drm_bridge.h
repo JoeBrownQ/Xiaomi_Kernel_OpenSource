@@ -1,5 +1,9 @@
 /*
  * Copyright (c) 2016 Intel Corporation
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  *
  * Permission to use, copy, modify, distribute, and sell this software and its
  * documentation for any purpose is hereby granted without fee, provided that
@@ -294,6 +298,11 @@ struct drm_bridge {
 	const struct drm_bridge_funcs *funcs;
 	/** @driver_private: pointer to the bridge driver's internal context */
 	void *driver_private;
+<<<<<<< HEAD
+=======
+	struct mutex lock;
+	bool is_dsi_drm_bridge;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 };
 
 void drm_bridge_add(struct drm_bridge *bridge);
@@ -314,6 +323,10 @@ void drm_bridge_mode_set(struct drm_bridge *bridge,
 			 struct drm_display_mode *adjusted_mode);
 void drm_bridge_pre_enable(struct drm_bridge *bridge);
 void drm_bridge_enable(struct drm_bridge *bridge);
+<<<<<<< HEAD
+=======
+int dsi_bridge_interface_enable(int timeout);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 #ifdef CONFIG_DRM_PANEL_BRIDGE
 struct drm_bridge *drm_panel_bridge_add(struct drm_panel *panel,

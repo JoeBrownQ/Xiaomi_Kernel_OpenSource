@@ -3,6 +3,10 @@
  *  linux/drivers/char/mem.c
  *
  *  Copyright (C) 1991, 1992  Linus Torvalds
+<<<<<<< HEAD
+=======
+ *  Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  *
  *  Added devfs support.
  *    Jan-11-1998, C. Scott Ananian <cananian@alumni.princeton.edu>
@@ -881,7 +885,11 @@ static const struct memdev {
 	const struct file_operations *fops;
 	fmode_t fmode;
 } devlist[] = {
+<<<<<<< HEAD
 #ifdef CONFIG_DEVMEM
+=======
+#if defined(CONFIG_DEVMEM) || defined(CONFIG_FACTORY_BUILD)
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	 [1] = { "mem", 0, &mem_fops, FMODE_UNSIGNED_OFFSET },
 #endif
 #ifdef CONFIG_DEVKMEM

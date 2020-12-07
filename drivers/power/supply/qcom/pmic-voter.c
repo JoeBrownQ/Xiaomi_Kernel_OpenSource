@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2015-2017, 2019 The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #include <linux/debugfs.h>
@@ -106,6 +110,16 @@ static void vote_min(struct votable *votable, int client_id,
 			*eff_id = i;
 		}
 	}
+<<<<<<< HEAD
+=======
+
+	if (strcmp(votable->name, "QG_WS") != 0) {
+			if (votable->votes[i].enabled)
+				pr_info("%s: val: %d\n", votable->client_strs[i],
+							votable->votes[i].value);
+	}
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	if (*eff_id == -EINVAL)
 		*eff_res = -EINVAL;
 }
@@ -456,7 +470,11 @@ int vote(struct votable *votable, const char *client_str, bool enabled, int val)
 		goto out;
 	}
 
+<<<<<<< HEAD
 	pr_debug("%s: %s,%d voting %s of val=%d\n",
+=======
+	pr_info("%s: %s,%d voting %s of val=%d\n",
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 		votable->name,
 		client_str, client_id, enabled ? "on" : "off", val);
 	switch (votable->type) {
@@ -480,12 +498,23 @@ int vote(struct votable *votable, const char *client_str, bool enabled, int val)
 	 */
 	if (!votable->voted_on
 			|| (effective_result != votable->effective_result)) {
+<<<<<<< HEAD
 		votable->effective_client_id = effective_id;
 		votable->effective_result = effective_result;
 		pr_debug("%s: effective vote is now %d voted by %s,%d\n",
 			votable->name, effective_result,
 			get_client_str(votable, effective_id),
 			effective_id);
+=======
+		if (strcmp(votable->name, "QG_WS") != 0) {
+			pr_info("%s: current vote is now %d voted by %s,%d, previous voted %d\n",
+				votable->name, effective_result,
+				get_client_str(votable, effective_id),
+				effective_id, votable->effective_result);
+		}
+		votable->effective_client_id = effective_id;
+		votable->effective_result = effective_result;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 		if (votable->callback && !votable->force_active
 				&& (votable->override_result == -EINVAL))
 			rc = votable->callback(votable, votable->data,

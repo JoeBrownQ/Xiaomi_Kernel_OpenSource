@@ -3,6 +3,10 @@
  *
  * Copyright (C) 1995-2009 Russell King
  * Copyright (C) 2012 ARM Ltd.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -103,6 +107,12 @@ void dump_backtrace(struct pt_regs *regs, struct task_struct *tsk)
 {
 	struct stackframe frame;
 	int skip = 0;
+<<<<<<< HEAD
+=======
+	long cur_state = 0;
+	unsigned long cur_sp = 0;
+	unsigned long cur_fp = 0;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 	pr_debug("%s(regs = %p tsk = %p)\n", __func__, regs, tsk);
 
@@ -127,6 +137,12 @@ void dump_backtrace(struct pt_regs *regs, struct task_struct *tsk)
 		 */
 		frame.fp = thread_saved_fp(tsk);
 		frame.pc = thread_saved_pc(tsk);
+<<<<<<< HEAD
+=======
+		cur_state = tsk->state;
+		cur_sp = thread_saved_sp(tsk);
+		cur_fp = frame.fp;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	}
 #ifdef CONFIG_FUNCTION_GRAPH_TRACER
 	frame.graph = tsk->curr_ret_stack;
@@ -134,6 +150,25 @@ void dump_backtrace(struct pt_regs *regs, struct task_struct *tsk)
 
 	printk("Call trace:\n");
 	do {
+<<<<<<< HEAD
+=======
+		if (tsk != current && (cur_state != tsk->state
+								|| cur_sp != thread_saved_sp(tsk)
+								|| cur_fp != thread_saved_fp(tsk))){
+		/*
+		* We would not be printing backtrace for the task
+		* that has changed state from uninterruptible to
+		* running before hitting the do-while loop but after
+		* saving the current state. If task is in running
+		* state before saving the state, then we may print
+		* wrong call trace or end up in infinite while loop
+		* if *(fp) and *(fp+8) are same. While the situation
+		* will stop print when that task schedule out.
+		*/
+			printk("The task:%s had been rescheduled!\n", tsk->comm);
+			break;
+		}
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 		/* skip until specified stack frame */
 		if (!skip) {
 			dump_backtrace_entry(frame.pc);

@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2018-2020 The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #define pr_fmt(fmt)	"QG-K: %s: " fmt, __func__
@@ -52,7 +56,11 @@ static ssize_t qg_ss_feature_store(struct device *dev,
 }
 DEVICE_ATTR_RW(qg_ss_feature);
 
+<<<<<<< HEAD
 static int qg_delta_soc_interval_ms = 20000;
+=======
+static int qg_delta_soc_interval_ms = 40000;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 static ssize_t soc_interval_ms_show(struct device *dev, struct device_attribute
 				     *attr, char *buf)
 {
@@ -94,7 +102,11 @@ static ssize_t fvss_delta_soc_interval_ms_store(struct device *dev,
 }
 DEVICE_ATTR_RW(fvss_delta_soc_interval_ms);
 
+<<<<<<< HEAD
 static int qg_delta_soc_cold_interval_ms = 4000;
+=======
+static int qg_delta_soc_cold_interval_ms = 25000;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 static ssize_t soc_cold_interval_ms_show(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
@@ -520,6 +532,7 @@ static bool maint_soc_timeout(struct qpnp_qg *chip)
 
 static void update_msoc(struct qpnp_qg *chip)
 {
+<<<<<<< HEAD
 	int rc = 0, sdam_soc, batt_temp = 0;
 	bool input_present = is_input_present(chip);
 
@@ -530,6 +543,24 @@ static void update_msoc(struct qpnp_qg *chip)
 	} else if (chip->catch_up_soc < chip->msoc) {
 		/* SOC dropped */
 		chip->msoc -= chip->dt.delta_soc;
+=======
+	int rc = 0, sdam_soc, batt_temp = 0, batt_cur = 0;
+	bool input_present = is_input_present(chip);
+
+	rc = qg_get_battery_current(chip, &batt_cur);
+	if (rc < 0) {
+		pr_err("Failed to read BATT_CUR rc=%d\n", rc);
+	}
+
+	if (chip->catch_up_soc > chip->msoc) {
+		/* SOC increased */
+		if (input_present && (batt_cur < 0)) /* Increment if input is present */
+			chip->msoc += chip->dt.delta_soc;
+	} else if (chip->catch_up_soc < chip->msoc) {
+		/* SOC dropped */
+		if (batt_cur > 0)
+			chip->msoc -= chip->dt.delta_soc;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	}
 	chip->msoc = CAP(0, 100, chip->msoc);
 
@@ -579,6 +610,13 @@ static void update_msoc(struct qpnp_qg *chip)
 
 static void scale_soc_stop(struct qpnp_qg *chip)
 {
+<<<<<<< HEAD
+=======
+	if (!chip->profile_loaded) {
+		qg_dbg(chip, QG_DEBUG_PON, "No Profile, skipping soc stop\n");
+		return;
+	}
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	chip->next_wakeup_ms = 0;
 	alarm_cancel(&chip->alarm_timer);
 
@@ -685,6 +723,13 @@ done:
 
 int qg_soc_init(struct qpnp_qg *chip)
 {
+<<<<<<< HEAD
+=======
+	if (!chip->profile_loaded) {
+		qg_dbg(chip, QG_DEBUG_PON, "No Profile, skipping soc init\n");
+		return 0;
+	}
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	if (alarmtimer_get_rtcdev()) {
 		alarm_init(&chip->alarm_timer, ALARM_BOOTTIME,
 			qpnp_msoc_timer);
@@ -699,5 +744,12 @@ int qg_soc_init(struct qpnp_qg *chip)
 
 void qg_soc_exit(struct qpnp_qg *chip)
 {
+<<<<<<< HEAD
+=======
+	if (!chip->profile_loaded) {
+		qg_dbg(chip, QG_DEBUG_PON, "No Profile, skipping soc exit\n");
+		return;
+	}
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	alarm_cancel(&chip->alarm_timer);
 }

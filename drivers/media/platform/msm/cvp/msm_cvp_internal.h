@@ -1,6 +1,10 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
  * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #ifndef _MSM_CVP_INTERNAL_H_
@@ -344,6 +348,10 @@ struct msm_cvp_fence_thread_data {
 	unsigned int device_id;
 	struct cvp_kmd_hfi_fence_packet in_fence_pkt;
 	unsigned int arg_type;
+<<<<<<< HEAD
+=======
+	struct work_struct work;    //xiaomi add
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 };
 
 extern struct msm_cvp_drv *cvp_driver;

@@ -5,6 +5,10 @@
 
 # Each configuration option enables a list of files.
 
+<<<<<<< HEAD
+=======
+obj-$(CONFIG_INPUT_AW8624_HAPTIC)	+= aw8624_haptic/
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 obj-$(CONFIG_INPUT_88PM860X_ONKEY)	+= 88pm860x_onkey.o
 obj-$(CONFIG_INPUT_88PM80X_ONKEY)	+= 88pm80x_onkey.o
 obj-$(CONFIG_INPUT_AB8500_PONKEY)	+= ab8500-ponkey.o

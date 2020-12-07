@@ -1496,9 +1496,16 @@ int __sys_bind(int fd, struct sockaddr __user *umyaddr, int addrlen)
 						      (struct sockaddr *)
 						      &address, addrlen);
 		}
+<<<<<<< HEAD
 		fput_light(sock->file, fput_needed);
 		if (!err)
 			sockev_notify(SOCKEV_BIND, sock);
+=======
+		if (!err)
+			sockev_notify(SOCKEV_BIND, sock);
+
+		fput_light(sock->file, fput_needed);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	}
 	return err;
 }
@@ -1530,9 +1537,16 @@ int __sys_listen(int fd, int backlog)
 		if (!err)
 			err = sock->ops->listen(sock, backlog);
 
+<<<<<<< HEAD
 		fput_light(sock->file, fput_needed);
 		if (!err)
 			sockev_notify(SOCKEV_LISTEN, sock);
+=======
+		if (!err)
+			sockev_notify(SOCKEV_LISTEN, sock);
+
+		fput_light(sock->file, fput_needed);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	}
 	return err;
 }

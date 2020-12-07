@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
  * Copyright (c) 2013-2019, The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #include <linux/delay.h>
@@ -38,7 +42,11 @@
 #define SCM_DLOAD_FULLDUMP		0X10
 #define SCM_EDLOAD_MODE			0X01
 #define SCM_DLOAD_CMD			0x10
+<<<<<<< HEAD
 #define SCM_DLOAD_MINIDUMP		0X20
+=======
+#define SCM_DLOAD_MINIDUMP		0X40
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 #define SCM_DLOAD_BOTHDUMPS	(SCM_DLOAD_MINIDUMP | SCM_DLOAD_FULLDUMP)
 
 #define DL_MODE_PROP "qcom,msm-imem-download_mode"
@@ -66,7 +74,11 @@ static int download_mode = 1;
 static struct kobject dload_kobj;
 
 static int in_panic;
+<<<<<<< HEAD
 static int dload_type = SCM_DLOAD_FULLDUMP;
+=======
+static int dload_type = SCM_DLOAD_BOTHDUMPS;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 static void *dload_mode_addr;
 static bool dload_mode_enabled;
 static void *emergency_dload_mode_addr;
@@ -495,7 +507,13 @@ static void msm_restart_prepare(const char *cmd)
 	else
 		qpnp_pon_system_pwr_off(PON_POWER_OFF_HARD_RESET);
 
+<<<<<<< HEAD
 	if (cmd != NULL) {
+=======
+	if (in_panic) {
+		qpnp_pon_set_restart_reason(PON_RESTART_REASON_PANIC);
+	} else if (cmd != NULL) {
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 		if (!strncmp(cmd, "bootloader", 10)) {
 			qpnp_pon_set_restart_reason(
 				PON_RESTART_REASON_BOOTLOADER);
@@ -529,10 +547,22 @@ static void msm_restart_prepare(const char *cmd)
 				__raw_writel(0x6f656d00 | (code & 0xff),
 					     restart_reason);
 		} else if (!strncmp(cmd, "edl", 3)) {
+<<<<<<< HEAD
 			enable_emergency_dload_mode();
 		} else {
 			__raw_writel(0x77665501, restart_reason);
 		}
+=======
+			if (0)
+				enable_emergency_dload_mode();
+		} else {
+			qpnp_pon_set_restart_reason(PON_RESTART_REASON_NORMAL);
+			__raw_writel(0x77665501, restart_reason);
+		}
+	} else {
+		qpnp_pon_set_restart_reason(PON_RESTART_REASON_NORMAL);
+		__raw_writel(0x77665501, restart_reason);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	}
 
 	flush_cache_all();

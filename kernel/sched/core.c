@@ -4,6 +4,10 @@
  *  Core kernel scheduler code and related syscalls
  *
  *  Copyright (C) 1991-2002  Linus Torvalds
+<<<<<<< HEAD
+=======
+ *  Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 #include "sched.h"
 
@@ -5646,6 +5650,37 @@ void show_state_filter(unsigned long state_filter)
 		debug_show_all_locks();
 }
 
+<<<<<<< HEAD
+=======
+void show_state_filter_single(unsigned long state_filter)
+{
+	struct task_struct *g, *p;
+
+#if BITS_PER_LONG == 32
+	printk(KERN_INFO
+		"  task                PC stack   pid father\n");
+#else
+	printk(KERN_INFO
+		"  task                        PC stack   pid father\n");
+#endif
+	rcu_read_lock();
+	for_each_process_thread(g, p) {
+		/*
+		 * reset the NMI-timeout, listing all files on a slow
+		 * console might take a lot of time:
+		 * Also, reset softlockup watchdogs on all CPUs, because
+		 * another CPU might be blocked waiting for us to process
+		 * an IPI.
+		 */
+		touch_nmi_watchdog();
+		touch_all_softlockup_watchdogs();
+		if (p->state == state_filter)
+			sched_show_task(p);
+	}
+	rcu_read_unlock();
+}
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 /**
  * init_idle - set up an idle thread for a given CPU
  * @idle: task in question

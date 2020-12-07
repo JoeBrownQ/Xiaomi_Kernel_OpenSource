@@ -3,6 +3,10 @@
  * fs/f2fs/gc.c
  *
  * Copyright (c) 2012 Samsung Electronics Co., Ltd.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  *             http://www.samsung.com/
  */
 #include <linux/fs.h>
@@ -642,8 +646,12 @@ static bool is_alive(struct f2fs_sb_info *sbi, struct f2fs_summary *sum,
 
 		if (unlikely(check_valid_map(sbi, segno, offset))) {
 			if (!test_and_set_bit(segno, SIT_I(sbi)->invalid_segmap)) {
+<<<<<<< HEAD
 				f2fs_msg(sbi->sb, KERN_ERR,
 						"mismatched blkaddr %u (source_blkaddr %u) in seg %u\n",
+=======
+				f2fs_err(sbi, "mismatched blkaddr %u (source_blkaddr %u) in seg %u\n",
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 						blkaddr, source_blkaddr, segno);
 				f2fs_bug_on(sbi, 1);
 			}

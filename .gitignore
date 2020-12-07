@@ -137,7 +137,14 @@ all.config
 kernel/configs/android-*.cfg
 
 # vendor device tree directories
+<<<<<<< HEAD
 arch/arm64/boot/dts/vendor/
 
 # Tech package directories
 techpack/
+=======
+#arch/arm64/boot/dts/vendor/
+
+# Tech package directories
+#techpack/
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)

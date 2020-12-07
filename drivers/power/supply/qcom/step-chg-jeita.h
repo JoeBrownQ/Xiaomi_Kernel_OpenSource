@@ -1,12 +1,22 @@
 /* SPDX-License-Identifier: GPL-2.0 */
 /*
  * Copyright (c) 2017-2019 The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #ifndef __STEP_CHG_H__
 #define __STEP_CHG_H__
 
+<<<<<<< HEAD
 #define MAX_STEP_CHG_ENTRIES	8
+=======
+#define MAX_STEP_CHG_ENTRIES	6
+#define BATT_COOL_THRESHOLD		150
+#define BATT_WARM_THRESHOLD		480
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 struct step_chg_jeita_param {
 	u32			psy_prop;

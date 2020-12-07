@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2016-2020, The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #include <linux/bitmap.h>
@@ -1859,6 +1863,10 @@ static void msm_geni_serial_handle_isr(struct uart_port *uport,
 				"%s.sirq 0x%x break:%d\n",
 				__func__, s_irq_status, uport->icount.brk);
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 		/*
 		 * In case of stop_rx handling there is a chance
 		 * for RX data can come in parallel. set drop_rx to
@@ -2799,10 +2807,30 @@ OF_EARLYCON_DECLARE(msm_geni_serial, "qcom,msm-geni-console",
 
 static int console_register(struct uart_driver *drv)
 {
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_FASTBOOT_CMD_CTRL_UART
+	if (!is_early_cons_enabled) {
+		pr_info("ignore console register\n");
+		return 0;
+	}
+#endif
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	return uart_register_driver(drv);
 }
 static void console_unregister(struct uart_driver *drv)
 {
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_FASTBOOT_CMD_CTRL_UART
+	if (!is_early_cons_enabled) {
+		pr_info("ignore console unregister\n");
+		return;
+	}
+#endif
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	uart_unregister_driver(drv);
 }
 
@@ -3024,6 +3052,19 @@ static int msm_geni_serial_probe(struct platform_device *pdev)
 		return -ENODEV;
 	}
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_FASTBOOT_CMD_CTRL_UART
+	/*if earlycon is not enabled, we should ignore console
+	  driver prob*/
+	if (!is_early_cons_enabled &&
+		(!strcmp(id->compatible, "qcom,msm-geni-console"))) {
+		pr_info("ignore cons prob\n");
+		return -ENODEV;
+	}
+#endif
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	if (pdev->dev.of_node) {
 		if (drv->cons) {
 			line = of_alias_get_id(pdev->dev.of_node, "serial");
@@ -3254,7 +3295,10 @@ static int msm_geni_serial_probe(struct platform_device *pdev)
 		goto exit_geni_serial_probe;
 
 	ret = uart_add_one_port(drv, uport);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 exit_geni_serial_probe:
 	IPC_LOG_MSG(dev_port->ipc_log_misc, "%s: ret:%d\n", __func__, ret);
 	return ret;

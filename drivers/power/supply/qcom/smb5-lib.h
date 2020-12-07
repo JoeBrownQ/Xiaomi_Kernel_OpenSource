@@ -1,6 +1,10 @@
 /* SPDX-License-Identifier: GPL-2.0 */
 /*
  * Copyright (c) 2018-2020 The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #ifndef __SMB5_CHARGER_H
@@ -14,6 +18,12 @@
 #include <linux/regulator/driver.h>
 #include <linux/regulator/consumer.h>
 #include <linux/extcon-provider.h>
+<<<<<<< HEAD
+=======
+#include <linux/gpio.h>
+#include <linux/gpio/consumer.h>
+#include <linux/of_gpio.h>
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 #include "storm-watch.h"
 #include "battery.h"
 
@@ -24,6 +34,10 @@ enum print_reason {
 	PR_PARALLEL	= BIT(3),
 	PR_OTG		= BIT(4),
 	PR_WLS		= BIT(5),
+<<<<<<< HEAD
+=======
+	PR_OEM		= BIT(6),
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 };
 
 #define DEFAULT_VOTER			"DEFAULT_VOTER"
@@ -76,12 +90,31 @@ enum print_reason {
 #define CC_MODE_VOTER			"CC_MODE_VOTER"
 #define MAIN_FCC_VOTER			"MAIN_FCC_VOTER"
 #define DCIN_AICL_VOTER			"DCIN_AICL_VOTER"
+<<<<<<< HEAD
 #define WLS_PL_CHARGING_VOTER		"WLS_PL_CHARGING_VOTER"
 #define ICL_CHANGE_VOTER		"ICL_CHANGE_VOTER"
 #define OVERHEAT_LIMIT_VOTER		"OVERHEAT_LIMIT_VOTER"
 
 #define BOOST_BACK_STORM_COUNT	3
 #define WEAK_CHG_STORM_COUNT	8
+=======
+#define JEITA_VOTER             	"JEITA_VOTER"
+#define WLS_PL_CHARGING_VOTER		"WLS_PL_CHARGING_VOTER"
+#define ICL_CHANGE_VOTER		"ICL_CHANGE_VOTER"
+#define OVERHEAT_LIMIT_VOTER		"OVERHEAT_LIMIT_VOTER"
+#define SW_CONN_THERM_VOTER		"SW_CONN_THERM_VOTER"
+#define PD_VERIFED_VOTER		"PD_VERIFED_VOTER"
+#define CHG_AWAKE_VOTER			"CHG_AWAKE_VOTER"
+#define CLASSAB_QC_FCC_VOTER		"CLASSAB_QC_FCC_VOTER"
+#define QC2_UNSUPPORTED_VOTER		"QC2_UNSUPPORTED_VOTER"
+#define SIX_PIN_VFLOAT_VOTER		"SIX_PIN_VFLOAT_VOTER"
+#define NON_FFC_VFLOAT_VOTER		"NON_FFC_VFLOAT_VOTER"
+
+#define BOOST_BACK_STORM_COUNT	3
+#define WEAK_CHG_STORM_COUNT	8
+/* defined for qc2_unsupported */
+#define QC2_UNSUPPORTED_UA		1500000
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 #define VBAT_TO_VRAW_ADC(v)		div_u64((u64)v * 1000000UL, 194637UL)
 
@@ -92,7 +125,12 @@ enum print_reason {
 #define SDP_100_MA			100000
 #define SDP_CURRENT_UA			500000
 #define CDP_CURRENT_UA			1500000
+<<<<<<< HEAD
 #define DCP_CURRENT_UA			1500000
+=======
+#define DCP_CURRENT_UA			1600000
+#define HVDCP2_CURRENT_UA		1400000
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 #define HVDCP_CURRENT_UA		3000000
 #define TYPEC_DEFAULT_CURRENT_UA	900000
 #define TYPEC_MEDIUM_CURRENT_UA		1500000
@@ -100,6 +138,63 @@ enum print_reason {
 #define DCIN_ICL_MIN_UA			100000
 #define DCIN_ICL_MAX_UA			1500000
 #define DCIN_ICL_STEP_UA		100000
+<<<<<<< HEAD
+=======
+#define PD_UNVERIFED_CURRENT		4800000
+/* defined for un_compliant Type-C cable */
+#define CC_UN_COMPLIANT_START_DELAY_MS	700
+/* defined for charger type recheck */
+#define CHARGER_RECHECK_DELAY_MS	30000
+#define TYPE_RECHECK_TIME_5S	5000
+#define TYPE_RECHECK_COUNT	3
+/* thermal micros */
+#define MAX_TEMP_LEVEL		16
+/* defined for distinguish qc class_a and class_b */
+#define VOL_THR_FOR_QC_CLASS_AB		12200000
+#define COMP_FOR_LOW_RESISTANCE_CABLE	250000
+#define QC_CLASS_A_CURRENT_UA		3800000
+#define QC_CLASS_B_CURRENT_UA		5000000
+#define QC_CLASS_3P5_CURRENT_UA		4500000
+#define HVDCP_CLASS_B_FOR_CP_UA		2500000
+#define HVDCP_CLASS_A_FOR_CP_UA		1900000
+#define HVDCP_ICL_CURRENT_UA			1400000
+#define HVDCP_START_CURRENT_UA		1000000
+#define FLOAT_CHARGER_UA		1000000
+#define MAX_PULSE			38
+#define MAX_PLUSE_COUNT_ALLOWED		30
+#define HIGH_NUM_PULSE_THR		12
+
+/* six pin new battery step charge micros */
+#define MAX_STEP_ENTRIES			3
+#define MAX_COUNT_OF_IBAT_STEP			2
+#define TAPER_DECREASE_FCC_UA			100000
+#define TAPER_IBAT_TRH_HYS_UA			50000
+#define MIN_TAPER_FCC_THR_UA			2500000
+
+#define ADC_CHG_TERM_MASK		32767
+#define FFC_BATT_COOL_THRESHOLD		150
+#define FFC_BATT_WARM_THRESHOLD		480
+
+#define STEP_CHG_DELAYED_MONITOR_MS			10000
+#define STEP_CHG_DELAYED_QUICK_MONITOR_MS			2000
+#define STEP_CHG_DELAYED_START_MS			100
+#define VBAT_FOR_STEP_MIN_UV			4300000
+#define VBAT_FOR_START_MIN_UV			3400000
+#define VBAT_FOR_STEP_HYS_UV			20000
+#define WARM_VFLOAT_UV			4200000
+
+#define CHARGER_SOC_DECIMAL_MS		200
+
+/* cutoff voltage threshold */
+#define CUTOFF_VOL_THR		3400000
+#define CUTOFF_VOL_HYS		50000
+
+/* six pin battery data struct */
+struct six_pin_step_data {
+	u32 vfloat_step_uv;
+	u32 fcc_step_ua;
+};
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 enum smb_mode {
 	PARALLEL_MASTER = 0,
@@ -399,6 +494,10 @@ struct smb_charger {
 	struct power_supply		*usb_psy;
 	struct power_supply		*dc_psy;
 	struct power_supply		*bms_psy;
+<<<<<<< HEAD
+=======
+	struct power_supply_desc        usb_psy_desc;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	struct power_supply		*usb_main_psy;
 	struct power_supply		*usb_port_psy;
 	struct power_supply		*wls_psy;
@@ -447,6 +546,10 @@ struct smb_charger {
 	struct work_struct	chg_termination_work;
 	struct work_struct	dcin_aicl_work;
 	struct work_struct	cp_status_change_work;
+<<<<<<< HEAD
+=======
+	struct work_struct	raise_qc3_vbus_work;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	struct delayed_work	ps_change_timeout_work;
 	struct delayed_work	clear_hdc_work;
 	struct delayed_work	icl_change_work;
@@ -459,6 +562,17 @@ struct smb_charger {
 	struct delayed_work	usbov_dbc_work;
 	struct delayed_work	pr_swap_detach_work;
 	struct delayed_work	pr_lock_clear_work;
+<<<<<<< HEAD
+=======
+	struct delayed_work	conn_therm_work;
+	struct delayed_work	otg_mode_conn_therm_work;
+	struct delayed_work	cc_un_compliant_charge_work;
+	struct delayed_work	charger_type_recheck;
+	struct delayed_work	dump_regs_work;
+	struct delayed_work	six_pin_batt_step_chg_work;
+	struct delayed_work     charger_soc_decimal;
+	struct delayed_work	thermal_setting_work;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 	struct alarm		lpd_recheck_timer;
 	struct alarm		moisture_protection_alarm;
@@ -486,6 +600,10 @@ struct smb_charger {
 	bool			ok_to_pd;
 	bool			typec_legacy;
 	bool			typec_irq_en;
+<<<<<<< HEAD
+=======
+	bool			fake_hardreset_usb_insertion;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 	/* cached status */
 	bool			system_suspend_supported;
@@ -493,6 +611,18 @@ struct smb_charger {
 	int			system_temp_level;
 	int			thermal_levels;
 	int			*thermal_mitigation;
+<<<<<<< HEAD
+=======
+	int 			*thermal_mitigation_icl;
+	int 			*thermal_mitigation_dcp;
+	int 			*thermal_mitigation_qc2;
+	int 			*thermal_mitigation_pd_base;
+	int 			*thermal_fcc_qc3p5;
+	int 			*thermal_fcc_qc3_cp;
+	int 			*thermal_fcc_qc3_classb_cp;
+	int 			*thermal_fcc_pps;
+	int			pps_thermal_level;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	int			dcp_icl_ua;
 	int			fake_capacity;
 	int			fake_batt_status;
@@ -535,6 +665,10 @@ struct smb_charger {
 	int			skin_temp;
 	int			connector_temp;
 	int			thermal_status;
+<<<<<<< HEAD
+=======
+	int			otg_mode_thermal_status;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	int			main_fcc_max;
 	u32			jeita_soft_thlds[2];
 	u32			jeita_soft_hys_thlds[2];
@@ -568,6 +702,28 @@ struct smb_charger {
 	bool			dpdm_enabled;
 	bool			apsd_ext_timeout;
 	bool			qc3p5_detected;
+<<<<<<< HEAD
+=======
+	int			fake_conn_temp;
+	u64			entry_time;
+	int			entry_connector_therm;
+	bool			support_conn_therm;
+	bool			otg_mode_conn_enable;
+	bool			report_input_absent;
+	int			conn_detect_count;
+	int			vbus_disable_gpio;
+	int			vbus_disable;
+	int			pd_verifed;
+	/* charger type recheck */
+	int			recheck_charger;
+	int			precheck_charger_type;
+	bool			qc_class_ab;
+	bool			is_qc_class_a;
+	bool			is_qc_class_b;
+	bool			raise_vbus_to_detect;
+	bool			detect_low_power_qc3_charger;
+	bool			support_ffc;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 	/* workaround flag */
 	u32			wa_flags;
@@ -575,6 +731,23 @@ struct smb_charger {
 	int                     qc2_max_pulses;
 	enum qc2_non_comp_voltage qc2_unsupported_voltage;
 	bool			dbc_usbov;
+<<<<<<< HEAD
+=======
+	bool			qc2_unsupported;
+	bool			snk_debug_acc_detected;
+	bool			cc_un_compliant_detected;
+	bool			hvdcp_recheck_status;
+
+	/* used for 6pin new battery step charge */
+	bool			six_pin_step_charge_enable;
+	bool			init_start_vbat_checked;
+	bool			health_not_good;
+	struct six_pin_step_data			six_pin_step_cfg[MAX_STEP_ENTRIES];
+	u32			start_step_vbat;
+	int			trigger_taper_count;
+	int			index_vfloat;
+	int			step_soc_threshold;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 	/* extcon for VBUS / ID notification to USB for uUSB */
 	struct extcon_dev	*extcon;
@@ -582,6 +755,11 @@ struct smb_charger {
 	/* battery profile */
 	int			batt_profile_fcc_ua;
 	int			batt_profile_fv_uv;
+<<<<<<< HEAD
+=======
+	int			non_fcc_batt_profile_fv_uv;
+	int			chg_term_current_thresh_hi_from_dts;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 	int			usb_icl_delta_ua;
 	int			pulse_cnt;
@@ -601,6 +779,25 @@ struct smb_charger {
 	int			dcin_uv_count;
 	ktime_t			dcin_uv_last_time;
 	int			last_wls_vout;
+<<<<<<< HEAD
+=======
+
+	/* uv_wa */
+	int			uv_wa;
+};
+
+enum quick_charge_type {
+	QUICK_CHARGE_NORMAL = 0,
+	QUICK_CHARGE_FAST,
+	QUICK_CHARGE_FLASH,
+	QUICK_CHARGE_TURBE,
+	QUICK_CHARGE_MAX,
+};
+
+struct quick_charge {
+	enum power_supply_type adap_type;
+	enum quick_charge_type adap_cap;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 };
 
 int smblib_read(struct smb_charger *chg, u16 addr, u8 *val);
@@ -760,6 +957,10 @@ int smblib_get_prop_connector_health(struct smb_charger *chg);
 int smblib_set_prop_thermal_overheat(struct smb_charger *chg,
 			       int therm_overheat);
 int smblib_get_skin_temp_status(struct smb_charger *chg);
+<<<<<<< HEAD
+=======
+int smblib_get_prop_connector_temp(struct smb_charger *chg);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 int smblib_get_prop_vph_voltage_now(struct smb_charger *chg,
 				union power_supply_propval *val);
 int smblib_set_prop_pd_current_max(struct smb_charger *chg,
@@ -788,8 +989,20 @@ void smblib_rerun_apsd(struct smb_charger *chg);
 int smblib_get_prop_fcc_delta(struct smb_charger *chg,
 				union power_supply_propval *val);
 int smblib_get_thermal_threshold(struct smb_charger *chg, u16 addr, int *val);
+<<<<<<< HEAD
 int smblib_dp_dm(struct smb_charger *chg, int val);
 int smblib_disable_hw_jeita(struct smb_charger *chg, bool disable);
+=======
+int smblib_set_prop_type_recheck(struct smb_charger *chg,
+				 const union power_supply_propval *val);
+int smblib_get_prop_type_recheck(struct smb_charger *chg,
+				 union power_supply_propval *val);
+int smblib_set_fastcharge_mode(struct smb_charger *chg, bool enable);
+int smblib_get_fastcharge_mode(struct smb_charger *chg);
+int smblib_dp_dm(struct smb_charger *chg, int val);
+int smblib_disable_hw_jeita(struct smb_charger *chg, bool disable);
+int smblib_set_vbus_disable(struct smb_charger *chg, bool disable);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 int smblib_run_aicl(struct smb_charger *chg, int type);
 int smblib_set_icl_current(struct smb_charger *chg, int icl_ua);
 int smblib_get_icl_current(struct smb_charger *chg, int *icl_ua);
@@ -809,6 +1022,10 @@ int smblib_configure_hvdcp_apsd(struct smb_charger *chg, bool enable);
 int smblib_icl_override(struct smb_charger *chg, enum icl_override_mode mode);
 enum alarmtimer_restart smblib_lpd_recheck_timer(struct alarm *alarm,
 				ktime_t time);
+<<<<<<< HEAD
+=======
+int smblib_get_quick_charge_type(struct smb_charger *chg);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 int smblib_toggle_smb_en(struct smb_charger *chg, int toggle);
 void smblib_hvdcp_detect_enable(struct smb_charger *chg, bool enable);
 void smblib_hvdcp_hw_inov_enable(struct smb_charger *chg, bool enable);

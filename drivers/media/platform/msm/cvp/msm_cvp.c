@@ -1,8 +1,16 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
  */
 
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+ */
+
+#include <linux/workqueue.h>
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 #include "msm_cvp.h"
 #include "cvp_hfi.h"
 #include <synx_api.h>
@@ -15,6 +23,11 @@ struct cvp_power_level {
 	unsigned long bw_sum;
 };
 
+<<<<<<< HEAD
+=======
+static struct workqueue_struct *fence_workqueue;
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 void print_internal_buffer(u32 tag, const char *str,
 		struct msm_cvp_inst *inst, struct msm_cvp_internal_buffer *cbuf)
 {
@@ -994,8 +1007,14 @@ exit:
 }
 
 #define CVP_FENCE_RUN	0x100
+<<<<<<< HEAD
 static int msm_cvp_thread_fence_run(void *data)
 {
+=======
+static void msm_cvp_thread_fence_run(struct work_struct *data)
+{
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	int i, rc = 0;
 	unsigned long timeout_ms = 100;
 	int synx_obj;
@@ -1014,12 +1033,20 @@ static int msm_cvp_thread_fence_run(void *data)
 		do_exit(-EINVAL);
 	}
 
+<<<<<<< HEAD
 	fence_thread_data = data;
+=======
+	fence_thread_data =
+		container_of(data, struct msm_cvp_fence_thread_data, work);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	inst = fence_thread_data->inst;
 	if (!inst) {
 		dprintk(CVP_ERR, "%s Wrong inst %pK\n", __func__, inst);
 		rc = -EINVAL;
+<<<<<<< HEAD
 		return rc;
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	}
 	inst->cur_cmd_type = CVP_FENCE_RUN;
 	in_fence_pkt = (struct cvp_kmd_hfi_fence_packet *)
@@ -1314,7 +1341,10 @@ exit:
 	kmem_cache_free(cvp_driver->fence_data_cache, fence_thread_data);
 	inst->cur_cmd_type = 0;
 	cvp_put_inst(inst);
+<<<<<<< HEAD
 	do_exit(rc);
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 }
 
 static int msm_cvp_session_process_hfi_fence(
@@ -1322,7 +1352,10 @@ static int msm_cvp_session_process_hfi_fence(
 	struct cvp_kmd_arg *arg)
 {
 	static int thread_num;
+<<<<<<< HEAD
 	struct task_struct *thread;
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	int rc = 0;
 	char thread_fence_name[32];
 	int pkt_idx;
@@ -1389,6 +1422,13 @@ static int msm_cvp_session_process_hfi_fence(
 	if (rc)
 		goto free_and_exit;
 
+<<<<<<< HEAD
+=======
+	if (fence_workqueue == NULL) {
+		fence_workqueue = alloc_workqueue("cvp_fence_workqueue", __WQ_LEGACY | WQ_MEM_RECLAIM | WQ_UNBOUND | WQ_HIGHPRI, 1);
+	}
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	thread_num = thread_num + 1;
 	fence_thread_data->inst = inst;
 	fence_thread_data->device_id = (unsigned int)inst->core->id;
@@ -1396,6 +1436,7 @@ static int msm_cvp_session_process_hfi_fence(
 				sizeof(struct cvp_kmd_hfi_fence_packet));
 	fence_thread_data->arg_type = arg->type;
 	snprintf(thread_fence_name, sizeof(thread_fence_name),
+<<<<<<< HEAD
 				"thread_fence_%d", thread_num);
 	thread = kthread_run(msm_cvp_thread_fence_run,
 			fence_thread_data, thread_fence_name);
@@ -1405,6 +1446,12 @@ static int msm_cvp_session_process_hfi_fence(
 		goto free_and_exit;
 	}
 
+=======
+			"thread_fence_%d", thread_num);
+
+	INIT_WORK(&fence_thread_data->work, msm_cvp_thread_fence_run);
+	queue_work(fence_workqueue, &fence_thread_data->work);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	return 0;
 
 free_and_exit:

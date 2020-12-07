@@ -96,6 +96,10 @@ int devm_gpio_request(struct device *dev, unsigned gpio, const char *label);
 int devm_gpio_request_one(struct device *dev, unsigned gpio,
 			  unsigned long flags, const char *label);
 void devm_gpio_free(struct device *dev, unsigned int gpio);
+<<<<<<< HEAD
+=======
+struct gpio_chip *find_chip_by_name(const char *name);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 #else /* ! CONFIG_GPIOLIB */
 
@@ -259,6 +263,15 @@ static inline void devm_gpio_free(struct device *dev, unsigned int gpio)
 	WARN_ON(1);
 }
 
+<<<<<<< HEAD
+=======
+struct gpio_chip *find_chip_by_name(const char *name)
+{
+	WARN_ON(1);
+	return NULL;
+}
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 #endif /* ! CONFIG_GPIOLIB */
 
 #endif /* __LINUX_GPIO_H */

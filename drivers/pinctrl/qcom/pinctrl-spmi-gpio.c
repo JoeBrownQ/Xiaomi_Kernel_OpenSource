@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2012-2014, 2016-2018 The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #include <linux/gpio.h>
@@ -14,6 +18,10 @@
 #include <linux/regmap.h>
 #include <linux/slab.h>
 #include <linux/types.h>
+<<<<<<< HEAD
+=======
+#include <linux/spmi.h>
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
 
@@ -738,6 +746,16 @@ static int pmic_gpio_get(struct gpio_chip *chip, unsigned pin)
 	return !!pad->out_value;
 }
 
+<<<<<<< HEAD
+=======
+int pmic_gpio_get_external(const char* chip_name, unsigned pin)
+{
+	struct gpio_chip *chip;
+	chip = find_chip_by_name(chip_name);
+	return pmic_gpio_get(chip, pin);
+}
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 static void pmic_gpio_set(struct gpio_chip *chip, unsigned pin, int value)
 {
 	struct pmic_gpio_state *state = gpiochip_get_data(chip);

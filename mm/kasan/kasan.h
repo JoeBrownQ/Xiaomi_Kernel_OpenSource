@@ -22,7 +22,10 @@
 #define KASAN_STACK_MID         0xF2
 #define KASAN_STACK_RIGHT       0xF3
 #define KASAN_STACK_PARTIAL     0xF4
+<<<<<<< HEAD
 #define KASAN_USE_AFTER_SCOPE   0xF8
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 /*
  * alloca redzone shadow values
@@ -130,8 +133,11 @@ void __asan_unregister_globals(struct kasan_global *globals, size_t size);
 void __asan_loadN(unsigned long addr, size_t size);
 void __asan_storeN(unsigned long addr, size_t size);
 void __asan_handle_no_return(void);
+<<<<<<< HEAD
 void __asan_poison_stack_memory(const void *addr, size_t size);
 void __asan_unpoison_stack_memory(const void *addr, size_t size);
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 void __asan_alloca_poison(unsigned long addr, size_t size);
 void __asan_allocas_unpoison(const void *stack_top, const void *stack_bottom);
 

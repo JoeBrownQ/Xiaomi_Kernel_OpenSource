@@ -876,3 +876,12 @@ config ICNSS_QMI
 	  handshake messages to WLAN FW, which includes hardware capabilities
 	  and configurations. It also send WLAN on/off control message to FW
 	  over QMI channel.
+<<<<<<< HEAD
+=======
+
+config DEBUG_POLICY_STATUS
+	bool "read debug policy status"
+	default y
+	help
+	  This driver read debug policy status using Qualcomm scm_call2 interface
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)

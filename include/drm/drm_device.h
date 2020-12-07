@@ -227,6 +227,10 @@ struct drm_device {
 	 * Set by drm_fb_helper_init() and cleared by drm_fb_helper_fini().
 	 */
 	struct drm_fb_helper *fb_helper;
+<<<<<<< HEAD
+=======
+	int doze_state;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 };
 
 #endif

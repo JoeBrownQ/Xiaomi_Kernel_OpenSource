@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2013-2014, 2018, 2019, The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #define pr_fmt(fmt) "devbw: " fmt
@@ -147,7 +151,11 @@ int devfreq_add_devbw(struct device *dev)
 	d->num_paths = num_paths;
 
 	p = &d->dp;
+<<<<<<< HEAD
 	p->polling_ms = 50;
+=======
+	p->polling_ms = 200;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	p->target = devbw_target;
 	p->get_dev_status = devbw_get_dev_status;
 

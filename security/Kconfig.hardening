@@ -3,10 +3,13 @@ menu "Kernel hardening options"
 
 config GCC_PLUGIN_STRUCTLEAK
 	bool "Force initialization of variables containing userspace addresses"
+<<<<<<< HEAD
 	# Currently STRUCTLEAK inserts initialization out of live scope of
 	# variables from KASAN point of view. This leads to KASAN false
 	# positive reports. Prohibit this combination for now.
 	depends on !KASAN_EXTRA
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	help
 	  This plugin zero-initializes any structures containing a
 	  __user attribute. This can prevent some classes of information

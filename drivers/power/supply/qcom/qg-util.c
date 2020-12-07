@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2018-2020 The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #include <linux/alarmtimer.h>
@@ -369,6 +373,14 @@ int qg_get_battery_temp(struct qpnp_qg *chip, int *temp)
 		return 0;
 	}
 
+<<<<<<< HEAD
+=======
+	if (chip->fake_temp != -EINVAL) {
+		*temp = chip->fake_temp;
+		return 0;
+	}
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	rc = iio_read_channel_processed(chip->batt_therm_chan, temp);
 	if (rc < 0) {
 		pr_err("Failed reading BAT_TEMP over ADC rc=%d\n", rc);

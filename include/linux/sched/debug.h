@@ -15,6 +15,10 @@ extern void dump_cpu_task(int cpu);
  * Only dump TASK_* tasks. (0 for all tasks)
  */
 extern void show_state_filter(unsigned long state_filter);
+<<<<<<< HEAD
+=======
+extern void show_state_filter_single(unsigned long state_filter);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 static inline void show_state(void)
 {

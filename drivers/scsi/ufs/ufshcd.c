@@ -219,6 +219,11 @@ static void ufshcd_update_uic_error_cnt(struct ufs_hba *hba, u32 reg, int type)
 /* UIC command timeout, unit: ms */
 #define UIC_CMD_TIMEOUT	500
 
+<<<<<<< HEAD
+=======
+#define UIC_PWR_CTRL_TIMEOUT 3000
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 /* NOP OUT retries waiting for NOP IN response */
 #define NOP_OUT_RETRIES    10
 /* Timeout after 30 msecs if NOP OUT hangs without response */
@@ -3817,7 +3822,12 @@ static int ufshcd_queuecommand(struct Scsi_Host *host, struct scsi_cmnd *cmd)
 	wmb();
 
 	/* issue command to the controller */
+<<<<<<< HEAD
 	spin_lock_irqsave(hba->host->host_lock, flags);
+=======
+
+    spin_lock_irqsave(hba->host->host_lock, flags);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	ufshcd_vops_setup_xfer_req(hba, tag, (lrbp->cmd ? true : false));
 
 	err = ufshcd_send_command(hba, tag);
@@ -5143,7 +5153,10 @@ more_wait:
 					 msecs_to_jiffies(UIC_CMD_TIMEOUT))) {
 		u32 intr_status = 0;
 		s64 ts_since_last_intr;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 		dev_err(hba->dev,
 			"pwr ctrl cmd 0x%x with mode 0x%x completion timeout\n",
 			cmd->command, cmd->argument3);
@@ -7201,7 +7214,10 @@ static void ufshcd_err_handler(struct work_struct *work)
 	bool clks_enabled = false;
 
 	hba = container_of(work, struct ufs_hba, eh_work);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	spin_lock_irqsave(hba->host->host_lock, flags);
 	ufsdbg_set_err_state(hba);
 
@@ -8508,7 +8524,10 @@ static int ufs_get_device_desc(struct ufs_hba *hba,
 
 	/* Enable WB only for UFS-3.1 or UFS-2.2 OR if desc len >= 0x59 */
 	if ((dev_desc->wspecversion >= 0x310) ||
+<<<<<<< HEAD
 	    (dev_desc->wspecversion == 0x220) ||
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	    (dev_desc->wmanufacturerid == UFS_VENDOR_TOSHIBA &&
 	     dev_desc->wspecversion >= 0x300 &&
 	     hba->desc_size.dev_desc >= 0x59)) {

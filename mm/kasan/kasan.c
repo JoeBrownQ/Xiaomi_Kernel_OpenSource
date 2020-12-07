@@ -2,6 +2,10 @@
  * This file contains shadow memory manipulation code.
  *
  * Copyright (c) 2014 Samsung Electronics Co., Ltd.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  * Author: Andrey Ryabinin <ryabinin.a.a@gmail.com>
  *
  * Some code borrowed from https://github.com/xairy/kasan-prototype by
@@ -724,6 +728,7 @@ EXPORT_SYMBOL(__asan_storeN_noabort);
 void __asan_handle_no_return(void) {}
 EXPORT_SYMBOL(__asan_handle_no_return);
 
+<<<<<<< HEAD
 /* Emitted by compiler to poison large objects when they go out of scope. */
 void __asan_poison_stack_memory(const void *addr, size_t size)
 {
@@ -743,6 +748,8 @@ void __asan_unpoison_stack_memory(const void *addr, size_t size)
 }
 EXPORT_SYMBOL(__asan_unpoison_stack_memory);
 
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 /* Emitted by compiler to poison alloca()ed objects. */
 void __asan_alloca_poison(unsigned long addr, size_t size)
 {

@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2017-2020 The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #define pr_fmt(fmt) "QCOM-BATT: %s: " fmt, __func__
@@ -922,6 +926,20 @@ static bool is_main_available(struct pl_data *chip)
 	return !!chip->main_psy;
 }
 
+<<<<<<< HEAD
+=======
+static bool is_batt_available(struct pl_data *chip)
+{
+	if (!chip->batt_psy)
+		chip->batt_psy = power_supply_get_by_name("battery");
+
+	if (!chip->batt_psy)
+		return false;
+
+	return true;
+}
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 static int pl_fcc_main_vote_callback(struct votable *votable, void *data,
 			int fcc_main_ua, const char *client)
 {
@@ -1027,7 +1045,11 @@ static void fcc_stepper_work(struct work_struct *work)
 	struct pl_data *chip = container_of(work, struct pl_data,
 			fcc_stepper_work.work);
 	union power_supply_propval pval = {0, };
+<<<<<<< HEAD
 	int reschedule_ms = 0, rc = 0, charger_present = 0;
+=======
+	int reschedule_ms = 0, rc = 0, charger_present = 0, batt_temp = 0;
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	int main_fcc = chip->main_fcc_ua;
 	int parallel_fcc = chip->slave_fcc_ua;
 
@@ -1051,6 +1073,15 @@ static void fcc_stepper_work(struct work_struct *work)
 		charger_present |= pval.intval;
 	}
 
+<<<<<<< HEAD
+=======
+	if (is_batt_available(chip)) {
+		rc = power_supply_get_property(chip->batt_psy,
+				POWER_SUPPLY_PROP_TEMP, &pval);
+		batt_temp = pval.intval;
+		pr_info("get batt temp=%d\n", batt_temp);
+	}
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	/*
 	 * If USB is not present, then set parallel FCC to min value and
 	 * main FCC to the effective value of FCC votable and exit.
@@ -1088,6 +1119,12 @@ static void fcc_stepper_work(struct work_struct *work)
 		chip->main_step_fcc_residual = 0;
 	}
 
+<<<<<<< HEAD
+=======
+	if (batt_temp < 0)
+		main_fcc = get_effective_result_locked(chip->fcc_votable);
+
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	if (chip->parallel_step_fcc_count) {
 		parallel_fcc += (chip->chg_param->fcc_step_size_ua
 					* chip->parallel_step_fcc_dir);
@@ -1194,6 +1231,7 @@ out:
 	vote(chip->pl_awake_votable, FCC_STEPPER_VOTER, false, 0);
 }
 
+<<<<<<< HEAD
 static bool is_batt_available(struct pl_data *chip)
 {
 	if (!chip->batt_psy)
@@ -1205,6 +1243,8 @@ static bool is_batt_available(struct pl_data *chip)
 	return true;
 }
 
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 #define PARALLEL_FLOAT_VOLTAGE_DELTA_UV 50000
 static int pl_fv_vote_callback(struct votable *votable, void *data,
 			int fv_uv, const char *client)

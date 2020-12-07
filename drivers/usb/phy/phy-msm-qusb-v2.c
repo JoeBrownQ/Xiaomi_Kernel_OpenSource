@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2014-2020, The Linux Foundation. All rights reserved.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  */
 
 #include <linux/module.h>
@@ -382,10 +386,15 @@ static void qusb_phy_get_tune1_param(struct qusb_phy *qphy)
 	qphy->tune_val = TUNE_VAL_MASK(qphy->tune_val,
 				qphy->efuse_bit_pos, bit_mask);
 	reg = readb_relaxed(qphy->base + qphy->phy_reg[PORT_TUNE1]);
+<<<<<<< HEAD
 	if (qphy->tune_val) {
 		reg = reg & 0x0f;
 		reg |= (qphy->tune_val << 4);
 	}
+=======
+	reg = reg & 0x0f;
+	reg |= (qphy->tune_val << 4);
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 	qphy->tune_val = reg;
 }

@@ -646,5 +646,9 @@ config CHARGER_CROS_USBPD
 	  that into power_supply properties.
 
 source "drivers/power/supply/qcom/Kconfig"
+<<<<<<< HEAD
+=======
+source "drivers/power/supply/maxim/Kconfig"
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 
 endif # POWER_SUPPLY

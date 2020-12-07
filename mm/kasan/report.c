@@ -2,6 +2,10 @@
  * This file contains error reporting code.
  *
  * Copyright (c) 2014 Samsung Electronics Co., Ltd.
+<<<<<<< HEAD
+=======
+ * Copyright (C) 2020 XiaoMi, Inc.
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
  * Author: Andrey Ryabinin <ryabinin.a.a@gmail.com>
  *
  * Some code borrowed from https://github.com/xairy/kasan-prototype by
@@ -99,9 +103,12 @@ static const char *get_shadow_bug_type(struct kasan_access_info *info)
 	case KASAN_KMALLOC_FREE:
 		bug_type = "use-after-free";
 		break;
+<<<<<<< HEAD
 	case KASAN_USE_AFTER_SCOPE:
 		bug_type = "use-after-scope";
 		break;
+=======
+>>>>>>> e601e14af (Kernel: Xiaomi kernel changes for Redmi Note 9 Pro Android Q)
 	case KASAN_ALLOCA_LEFT:
 	case KASAN_ALLOCA_RIGHT:
 		bug_type = "alloca-out-of-bounds";
